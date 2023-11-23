@@ -40,20 +40,6 @@
 .read-the-docs {
   color: #888;
 }
-.sidebar-left {
-  flex: 0 0 250px;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar-menu li {
-  margin-bottom: 10px;
-}
 
 .sidebar-menu li a {
   display: block;
@@ -89,75 +75,6 @@
     margin-right: 0;
   }
 }
-/* App.css */
-
-/* ...existing styles... */
-
-/* .header {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-} */
-
-/* .logo {
-  font-size: 24px;
-  margin-bottom: 10px;
-} */
-
-/* .header-nav {
-  display: flex;
-  justify-content: space-around;
-} */
-/* App.css */
-
-/* ...existing styles... */
-
-/* Hide left and right sidebars on mobile screens */
-/* App.css */
-
-/* ...existing styles... */
-
-/* Sidebar styles */
-/* .sidebar-left {
-  position: fixed;
-  top: 0;
-  left: -250px; /* Hide sidebar by default */
-/* width: 250px;
-  height: 100%;
-  background-color: #f0f0f0;
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar-left.open {
-  left: 0; /* Show sidebar when open class is applied */
-/* } */
-
-/* .sidebar-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px;
-}
-
-.toggle-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-} */
-
-/* .sidebar-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar-menu ul li {
-  padding: 10px;
-} */
-*/ */
-
-/* Other existing styles... */
 
 @media only screen and (max-width: 768px) {
   /* .sidebar-left, */
@@ -233,11 +150,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
-/* .logo {
-  font-size: 24px;
-  margin-bottom: 10px;
-} */
 
 .header-left {
   display: flex;
@@ -325,9 +237,6 @@
     margin-left: 0;
   }
 }
-/* App.css */
-
-/* ...existing styles... */
 
 .sidebar-left {
   flex: 0 0 250px;
@@ -361,13 +270,6 @@
 .sidebar-link:hover {
   background-color: #bbb; /* Slightly darker background color on hover */
 }
-/* App.css */
-
-/* ...existing styles... */
-
-/* App.css */
-
-/* ...existing styles... */
 
 .header-link {
   color: #888; /* Dimmer text color for header links */
@@ -383,7 +285,3 @@
   background-color: #f5f5f5; /* Lighter background color on hover */
   color: #666; /* Darker text color on hover */
 }
-
-/* Other existing styles... */
-
-/* Other existing styles... */

@@ -39,7 +39,7 @@ const MainContent = () => {
   const fetchDataFromApi = async () => {
     try {
       // Fetch data from your REST API endpoint
-      const response = await fetch("https://api.example.com/data"); // Replace with your API endpoint
+      const response = await fetch("http://localhost:8081/"); // Replace with your API endpoint
       const data = await response.json();
       setApiData(data); // Set the fetched data in state
     } catch (error) {

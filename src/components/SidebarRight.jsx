@@ -1,40 +1,6 @@
 // SidebarRight.js
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 const SidebarRight = () => {
-  // const [news, setNews] = useState([]);
-
-  // useEffect(() => {
-  //   // Fetch news from a news API
-  //   // For example using Axios:
-  //   axios
-  //     .get(
-  //       "https://api.worldnewsapi.com/geo-coordinates?location=London%2C%20UK"
-  //     )
-  //     .then((response) => {
-  //       // Set the news data to state
-  //       setNews(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching news:", error);
-  //     });
-  // }, []);
-
-  // return (
-  //   <aside className="sidebar-right">
-  //     {/* Stock news flowing from top to bottom */}
-  //     <h2>Stock News</h2>
-  //     <div className="news-container">
-  //       {news.map((item, index) => (
-  //         <div key={index} className="news-item">
-  //           <p>{item.title}</p>
-  //           {/* Display other news details */}
-  //         </div>
-  //       ))}
-  //     </div>
-  //   </aside>
-  // );
   return (
     <aside className="sidebar-right">
       {/* Contact and About */}

@@ -7,6 +7,7 @@ import SidebarLeft from "./components/SidebarLeft";
 import SidebarRight from "./components/SidebarRight";
 import "./assets/styles.css";
 import MainContent from "./components/MainContent";
+import YourComponent from "./components/YourComponent";
 
 function App() {
   const [selectedItem, setSelectedItem] = useState("");
@@ -22,7 +23,8 @@ function App() {
         <main className="main-content">
           {/* Main content goes here */}
           {/* <p>Main Content Area</p> */}
-          <MainContent selectedItem={selectedItem} />
+          {/* <MainContent selectedItem={selectedItem} /> */}
+          <YourComponent />
         </main>
         <SidebarRight />
       </div>

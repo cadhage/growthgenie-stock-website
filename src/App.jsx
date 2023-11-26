@@ -142,8 +142,8 @@ function App() {
                 <tbody>
                   {fdData.map((item, FIXEDDEPOSITID) => (
                     <tr key={FIXEDDEPOSITID}>
+                      <td>{item.FIXEDDEPOSITID}</td>
                       <td>{item.INVESTMENTACCOUNTID}</td>
-                      <td>{item.FUNDMANAGER}</td>
                       <td>{item.PRINCIPALAMOUNT}</td>
                       <td>{item.INTERESTRATE}</td>
                       <td>{item.MATURITYAMOUNT}</td>

@@ -283,36 +283,43 @@
   position: relative;
 }
 
-.toggle-top {
-  text-align: center;
-  margin-bottom: 10px; /* Adjust as needed */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
-.toggle-btn {
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  display: block;
-  width: 100%;
-  z-index: 1;
-}
-
 .sidebar-left {
   position: relative;
   z-index: 0;
 }
+/* CSS for mobile-first design */
+/* CSS for mobile-first design */
 
-/* Style for the Font Awesome icons */
-.menu-icon {
-  font-size: 24px;
+/* Styles for the main container */
+.main-container {
+  /* Add your main container styles here */
+  text-align: center; /* Center content horizontally */
 }
-.toggle-top,
+
+/* Styles for toggle button */
 .toggle-btn {
-  display: none;
+  display: none; /* Initially hide the toggle button */
+  /* Add your toggle button styles here */
+  width: 100%;
+  max-width: 100%; /* Ensure it takes full width */
+  padding: 10px; /* Adjust padding as needed */
+}
+
+/* Styles for mobile-only buttons */
+.mobile-buttons {
+  display: none; /* Initially hide the mobile-only buttons */
+  /* Add your mobile-only buttons styles here */
+}
+
+/* Media query for screens smaller than or equal to 768px (mobile screens) */
+@media screen and (max-width: 768px) {
+  /* Show the toggle button on mobile screens */
+  .toggle-btn {
+    display: block;
+  }
+
+  /* Show the mobile-only buttons when the toggle button is clicked */
+  .mobile-buttons {
+    display: block;
+  }
 }

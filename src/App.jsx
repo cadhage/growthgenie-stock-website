@@ -23,8 +23,8 @@ function App() {
         <main className="main-content">
           {/* Main content goes here */}
           {/* <p>Main Content Area</p> */}
-          {/* <MainContent selectedItem={selectedItem} /> */}
-          <YourComponent />
+          <MainContent selectedItem={selectedItem} />
+          {/* <YourComponent /> */}
         </main>
         <SidebarRight />
       </div>

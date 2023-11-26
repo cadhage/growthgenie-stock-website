@@ -323,3 +323,10 @@
     display: block;
   }
 }
+.table tbody tr td {
+  font-size: 14px; /* Adjust font size */
+}
+
+.table tbody tr {
+  padding: 8px; /* Adjust row spacing */
+}

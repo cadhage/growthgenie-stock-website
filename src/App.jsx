@@ -75,82 +75,88 @@ function App() {
           {selectedItem === "Mutual Funds" && (
             <div>
               <h2>Top Performing Mutual Funds</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>FUNDNAME</th>
-                    <th>FUNDMANAGER</th>
-                    <th>NAV</th>
-                    <th>INVESTMENTAMOUNT</th>
-                    <th>MUTUALFUNDID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {mfData.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.FUNDNAME}</td>
-                      <td>{item.FUNDMANAGER}</td>
-                      <td>{item.NAV}</td>
-                      <td>{item.INVESTMENTAMOUNT}</td>
-                      <td>{item.MUTUALFUNDID}</td>
+              <div className="table-responsive">
+                <table className="table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Fund Name</th>
+                      <th scope="col">Fund Maneger</th>
+                      <th scope="col">NAV</th>
+                      <th scope="col">Investment Amount</th>
+                      <th scope="col">Mutual Fund ID</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {mfData.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.FUNDNAME}</td>
+                        <td>{item.FUNDMANAGER}</td>
+                        <td>{item.NAV}</td>
+                        <td>{item.INVESTMENTAMOUNT}</td>
+                        <td>{item.MUTUALFUNDID}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
           {selectedItem === "Stocks" && (
             <div>
               <h2>Top Performing Stocks</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>STOCKID</th>
-                    <th>STOCKNAME</th>
-                    <th>NAV</th>
-                    <th>PURCHASEPRICE</th>
-                    <th>QUANTITY</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {stoeksData.map((item, STOCKID) => (
-                    <tr key={STOCKID}>
-                      <td>{item.STOCKID}</td>
-                      <td>{item.STOCKNAME}</td>
-                      <td>{item.STOCKEXCHANGE}</td>
-                      <td>{item.PURCHASEPRICE}</td>
-                      <td>{item.QUANTITY}</td>
+              <div className="table-responsive">
+                <table className="table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Stoke Id</th>
+                      <th scope="col">Stoke Name</th>
+                      <th scope="col">Stoke Enchange</th>
+                      <th scope="col">Purchase Price</th>
+                      <th scope="col">Quantity</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {stoeksData.map((item, STOCKID) => (
+                      <tr key={STOCKID}>
+                        <td>{item.STOCKID}</td>
+                        <td>{item.STOCKNAME}</td>
+                        <td>{item.STOCKEXCHANGE}</td>
+                        <td>{item.PURCHASEPRICE}</td>
+                        <td>{item.QUANTITY}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
           {selectedItem === "Fixed Deposits" && (
             <div>
               <h2>Top Performing Fixed Deposits</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>FIXEDDEPOSITID</th>
-                    <th>INVESTMENTACCOUNTID</th>
-                    <th>PRINCIPALAMOUNT</th>
-                    <th>INTERESTRATE</th>
-                    <th>MATURITYAMOUNT</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fdData.map((item, FIXEDDEPOSITID) => (
-                    <tr key={FIXEDDEPOSITID}>
-                      <td>{item.FIXEDDEPOSITID}</td>
-                      <td>{item.INVESTMENTACCOUNTID}</td>
-                      <td>{item.PRINCIPALAMOUNT}</td>
-                      <td>{item.INTERESTRATE}</td>
-                      <td>{item.MATURITYAMOUNT}</td>
+              <div className="table-responsive">
+                <table className="table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">FD Id</th>
+                      <th scope="col">Investment Acc. Id</th>
+                      <th scope="col">Principal Amount</th>
+                      <th scope="col">Interest Rate</th>
+                      <th scope="col">Maturity Amount</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {fdData.map((item, FIXEDDEPOSITID) => (
+                      <tr key={FIXEDDEPOSITID}>
+                        <td>{item.FIXEDDEPOSITID}</td>
+                        <td>{item.INVESTMENTACCOUNTID}</td>
+                        <td>{item.PRINCIPALAMOUNT}</td>
+                        <td>{item.INTERESTRATE}</td>
+                        <td>{item.MATURITYAMOUNT}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           )}
         </main>

@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-const SidebarLeft = ({ handleMutualFundClick }) => {
+const SidebarLeft = ({
+  handleMutualFundClick,
+  handleFixedDepositeClick,
+  handleTopStokesClick,
+}) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -37,7 +41,7 @@ const SidebarLeft = ({ handleMutualFundClick }) => {
             <li>
               <button
                 className="sidebar-link"
-                onClick={() => handleMutualFundClick("Stokes")}
+                onClick={() => handleTopStokesClick()}
               >
                 Stokes
               </button>
@@ -45,7 +49,7 @@ const SidebarLeft = ({ handleMutualFundClick }) => {
             <li>
               <button
                 className="sidebar-link"
-                onClick={() => handleMutualFundClick()} // Handling Mutual Fund button click
+                onClick={() => handleMutualFundClick()} // Handle Mutual Fund button click
               >
                 Mutual Funds
               </button>
@@ -53,7 +57,7 @@ const SidebarLeft = ({ handleMutualFundClick }) => {
             <li>
               <button
                 className="sidebar-link"
-                onClick={() => handleMutualFundClick("Fixed Deposit")}
+                onClick={() => handleFixedDepositeClick()}
               >
                 Fixed Deposit
               </button>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-const TopPerformingFD = ({ handleMutualFundClick }) => {
+const TopPerformingFDs = ({ handleMutualFundClick }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
   const [fdData, setFdData] = useState([]);
   useEffect(() => {
-    fetchTopPerformingFD; // Trigger the API call for Mutual Funds on component mount
+    fetchTopPerformingFD(); // Trigger the API call for Mutual Funds on component mount
   }, [handleMutualFundClick]);
   useEffect(() => {
     const handleResize = () => {
@@ -50,7 +50,7 @@ const TopPerformingFD = ({ handleMutualFundClick }) => {
       {showButtons && (
         <div className={`horizontal-menu${isMobile ? " mobile-view" : ""}`}>
           <button className="menu-item">Stokes</button>
-          <button className="menu-item" onClick={fetchTopPerformingFD}>
+          <button className="menu-item" onClick={handleMutualFundClick}>
             Mutual Funds
           </button>
           {/* <button className="menu-item">Fixed Deposit</button> */}
@@ -65,4 +65,4 @@ const TopPerformingFD = ({ handleMutualFundClick }) => {
   );
 };
 
-export default TopPerformingFD;
+export default TopPerformingFDs;

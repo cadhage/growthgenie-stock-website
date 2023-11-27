@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../assets/styles.css"; // Import your CSS file for styling
 
-const YourComponent = () => {
+const Register = () => {
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -117,4 +117,4 @@ const YourComponent = () => {
   );
 };
 
-export default YourComponent;
+export default Register;

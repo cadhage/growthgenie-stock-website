@@ -324,9 +324,11 @@
   }
 }
 .table tbody tr td {
-  font-size: 14px; /* Adjust font size */
+  font-size: 12px; /* Adjust font size */
 }
-
+.table thead tr th {
+  font-size: 12px; /* Adjust font size */
+}
 .table tbody tr {
-  padding: 8px; /* Adjust row spacing */
+  padding: 2px; /* Adjust row spacing */
 }

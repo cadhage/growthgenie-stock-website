@@ -55,16 +55,18 @@ body {
 .sidebar-left {
   flex: 0 0 250px;
   background-color: #f0f0f0;
+  padding: 30px;
 }
 
 .main-content {
   flex: 1;
-  padding: 20px;
+  padding: 30px;
 }
 
 .sidebar-right {
   flex: 0 0 250px;
   background-color: #f0f0f0;
+  padding: 30px;
 }
 
 /* Responsive styles */

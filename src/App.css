@@ -332,3 +332,7 @@
 .table tbody tr {
   padding: 2px; /* Adjust row spacing */
 }
+.sidebar-button {
+  margin-top: 10px; /* Add some top margin to lower the button */
+  /* Other button styles */
+}

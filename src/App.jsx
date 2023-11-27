@@ -7,8 +7,8 @@ import SidebarLeft from "./components/SidebarLeft";
 import SidebarRight from "./components/SidebarRight";
 import "./assets/styles.css";
 import MainContent from "./components/MainContent";
-import YourComponent from "./components/YourComponent";
-import TopPerformingFD from "./components/ClientScreen";
+import Register from "./components/Register";
+import ClientScreen from "./components/ClientScreen";
 
 function App() {
   const [selectedItem, setSelectedItem] = useState("");
@@ -68,7 +68,7 @@ function App() {
           {/* Main content goes here */}
           {/* <p>Main Content Area</p> */}
           {/* <MainContent selectedItem={selectedItem} /> */}
-          <TopPerformingFD
+          <ClientScreen
             handleMutualFundClick={handleMutualFundClick}
             handleFixedDepositeClick={handleFixedDepositeClick}
             handleTopStokesClick={handleTopStokesClick}

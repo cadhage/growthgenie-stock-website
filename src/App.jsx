@@ -16,6 +16,18 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mfData, setMfData] = useState([]);
   const [stoeksData, setStokesData] = useState([]);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    // Add other fields as needed
+  });
+  const [successMessage, setSuccessMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   const handleItemClick = (itemName) => {
     setSelectedItem(itemName);
   };
@@ -55,9 +67,50 @@ function App() {
         console.error("Error fetching Mutual Funds data:", error);
       });
   };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserData({ ...userData, [name]: value });
+  };
+  const handleRegister = () => {
+    setSelectedItem("Register");
+    fetch("http://localhost:8080/api/login/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Handle successful response from backend
+        console.log("Response from backend:", data);
+        setSuccessMessage("Welcome! Data received successfully");
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error:", error);
+      });
+    setTimeout(() => {
+      setSubmitted(true);
+      setSuccessMessage("Welcome! Data received successfully");
+    }, 10000);
+  };
+  const handleLogin = () => {
+    // Handle logic to display login screen or call the login API
+    // For instance:
+    // showLogin();
+    console.log("Login");
+    // or call a login API function
+  };
+
   return (
     <div className="app">
-      <Header />
+      <Header handleLogin={handleLogin} handleRegister={handleRegister} />
       <div className="content">
         <SidebarLeft
           handleMutualFundClick={handleMutualFundClick}
@@ -161,6 +214,71 @@ function App() {
                   </tbody>
                 </table>
               </div>
+            </div>
+          )}
+          {selectedItem === "Register" && !submitted ? (
+            <div className="container">
+              <form>
+                {/* Input fields for user data */}
+                <div className="input-group">
+                  <label>First Name:</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    className="input-field"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <label>Last Name:</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    className="input-field"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <label>Username:</label>
+                  <input
+                    type="text"
+                    name="username"
+                    className="input-field"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="input-field"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="input-group">
+                  <label>Password:</label>
+                  <input
+                    type="password"
+                    name="password"
+                    className="input-field"
+                    onChange={handleInputChange}
+                  />
+                </div>
+                {/* Add other input fields for user data */}
+
+                <button
+                  type="button"
+                  className="submit-button"
+                  onClick={handleRegister}
+                >
+                  Submit
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div className="welcome-message">
+              <p>{successMessage}</p>
             </div>
           )}
         </main>

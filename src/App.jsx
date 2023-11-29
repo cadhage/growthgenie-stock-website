@@ -31,6 +31,18 @@ function App() {
   const handleItemClick = (itemName) => {
     setSelectedItem(itemName);
   };
+  const [userType, setUserType] = useState(""); // Assuming userType is set accordingly
+
+  // Functions for handling login actions
+  const handleClientLogin = () => {
+    // Logic for client login
+    setUserType("client");
+  };
+
+  const handleAdminLogin = () => {
+    // Logic for admin login
+    setUserType("admin");
+  };
   const handleMutualFundClick = () => {
     setSelectedItem("Mutual Funds");
     fetch("http://localhost:8080/api/topmutualfunds") // Replace with your API endpoint
@@ -78,7 +90,7 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userData),
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -98,7 +110,7 @@ function App() {
     setTimeout(() => {
       setSubmitted(true);
       setSuccessMessage("Welcome! Data received successfully");
-    }, 10000);
+    }, 100000);
   };
   const handleLogin = () => {
     // Handle logic to display login screen or call the login API
@@ -110,12 +122,17 @@ function App() {
 
   return (
     <div className="app">
-      <Header handleLogin={handleLogin} handleRegister={handleRegister} />
+      <Header
+        handleClientLogin={handleClientLogin}
+        handleAdminLogin={handleAdminLogin}
+        userType={userType}
+      />
       <div className="content">
         <SidebarLeft
           handleMutualFundClick={handleMutualFundClick}
           handleFixedDepositeClick={handleFixedDepositeClick}
           handleTopStokesClick={handleTopStokesClick}
+          userType={userType}
         />
         <main className="main-content">
           {/* Main content goes here */}
@@ -214,71 +231,6 @@ function App() {
                   </tbody>
                 </table>
               </div>
-            </div>
-          )}
-          {selectedItem === "Register" && !submitted ? (
-            <div className="container">
-              <form>
-                {/* Input fields for user data */}
-                <div className="input-group">
-                  <label>First Name:</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    className="input-field"
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>Last Name:</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    className="input-field"
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>Username:</label>
-                  <input
-                    type="text"
-                    name="username"
-                    className="input-field"
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    name="email"
-                    className="input-field"
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="input-group">
-                  <label>Password:</label>
-                  <input
-                    type="password"
-                    name="password"
-                    className="input-field"
-                    onChange={handleInputChange}
-                  />
-                </div>
-                {/* Add other input fields for user data */}
-
-                <button
-                  type="button"
-                  className="submit-button"
-                  onClick={handleRegister}
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div className="welcome-message">
-              <p>{successMessage}</p>
             </div>
           )}
         </main>

@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-// import "./SidebarLeft.css"; // Import CSS file for styling
 
 const SidebarLeft = ({
   handleMutualFundClick,
   handleFixedDepositeClick,
   handleTopStokesClick,
+  userType,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+  console.log(userType);
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
@@ -39,31 +37,61 @@ const SidebarLeft = ({
       <aside className={`sidebar-left${collapsed ? " collapsed" : ""}`}>
         <nav className={`sidebar-menu${collapsed ? " hide-background" : ""}`}>
           <ul className="sidebar-menu">
-            <li>
-              <button
-                className="sidebar-link sidebar-button"
-                onClick={() => handleTopStokesClick()}
-              >
-                Stokes
-              </button>
-            </li>
-            <li>
-              <button
-                className="sidebar-link sidebar-button"
-                onClick={() => handleMutualFundClick()}
-              >
-                Mutual Funds
-              </button>
-            </li>
-            <li>
-              <button
-                className="sidebar-link sidebar-button"
-                onClick={() => handleFixedDepositeClick()}
-              >
-                Fixed Deposit
-              </button>
-            </li>
-            {/* Add more menu options */}
+            {userType === "admin" ? (
+              <>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => console.log("High-Net-Worth Investors")}
+                  >
+                    High-Net-Worth Investors
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => console.log("Historical Returns")}
+                  >
+                    Historical Returns
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => console.log("Tax Assessment")}
+                  >
+                    Tax Assessment
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => handleTopStokesClick()}
+                  >
+                    Stokes
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => handleMutualFundClick()}
+                  >
+                    Mutual Funds
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="sidebar-link sidebar-button"
+                    onClick={() => handleFixedDepositeClick()}
+                  >
+                    Fixed Deposit
+                  </button>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </aside>

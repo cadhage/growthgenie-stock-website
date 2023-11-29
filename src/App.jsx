@@ -17,7 +17,7 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mfData, setMfData] = useState([]);
   const [stoeksData, setStokesData] = useState([]);
-  const [username, setUsername] = useState("");
+  const [highNetWorthInvestorData, setHighNetWorthInvestorsData] = useState([]);
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({
     firstName: "",
@@ -27,6 +27,7 @@ function App() {
     password: "",
     // Add other fields as needed
   });
+  setHighNetWorthInvestorsData;
   const [successMessage, setSuccessMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const handleItemClick = (itemName) => {
@@ -80,6 +81,45 @@ function App() {
         console.error("Error fetching Stocks data:", error);
       });
   };
+  const handleHighNetWorthInvestorsClick = () => {
+    setSelectedItem("High-Net-Worth Investors");
+    console.log("handleHighNetWorthInvestorsClick");
+    axios
+      .get("http://localhost:8080/api/wealthiestcustomer")
+      .then((response) => {
+        setHighNetWorthInvestorsData(response.data);
+        console.log(response.data); // Process the fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching High-Net-Worth Investors data:", error);
+      });
+  };
+
+  const handleHistoricalReturnsClick = () => {
+    setSelectedItem("Historical Returns");
+    axios
+      .get("http://localhost:8080/api/historicalreturns")
+      .then((response) => {
+        setHistoricalReturnsData(response.data);
+        console.log(response.data); // Process the fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching Historical Returns data:", error);
+      });
+  };
+
+  const handleTaxAssessmentClick = () => {
+    setSelectedItem("Tax Assessment");
+    axios
+      .get("http://localhost:8080/api/taxassessment")
+      .then((response) => {
+        setTaxAssessmentData(response.data);
+        console.log(response.data); // Process the fetched data
+      })
+      .catch((error) => {
+        console.error("Error fetching Tax Assessment data:", error);
+      });
+  };
   return (
     <div className="app">
       <Header
@@ -93,6 +133,7 @@ function App() {
           handleFixedDepositeClick={handleFixedDepositeClick}
           handleTopStokesClick={handleTopStokesClick}
           userType={userType}
+          handleHighNetWorthInvestorsClick={handleHighNetWorthInvestorsClick}
         />
         <main className="main-content">
           {/* Main content goes here */}
@@ -190,6 +231,34 @@ function App() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            </div>
+          )}
+          {selectedItem === "High-Net-Worth Investors" && (
+            <div>
+              <h2>High-Net-Worth Investor Information</h2>
+              <div className="investor-info">
+                <p>
+                  <strong>Customer ID:</strong>{" "}
+                  {highNetWorthInvestorData.CustomerID}
+                </p>
+                <p>
+                  <strong>First Name:</strong>{" "}
+                  {highNetWorthInvestorData.FirstName}
+                </p>
+                <p>
+                  <strong>Last Name:</strong>{" "}
+                  {highNetWorthInvestorData.LastName}
+                </p>
+                <p>
+                  <strong>Email:</strong> {highNetWorthInvestorData.email}
+                </p>
+                <p>
+                  <strong>Phone:</strong> {highNetWorthInvestorData.phone}
+                </p>
+                <p>
+                  <strong>Wealth:</strong> {highNetWorthInvestorData.Wealth}
+                </p>
               </div>
             </div>
           )}

@@ -5,6 +5,7 @@ const SidebarLeft = ({
   handleFixedDepositeClick,
   handleTopStokesClick,
   userType,
+  handleHighNetWorthInvestorsClick,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -42,7 +43,7 @@ const SidebarLeft = ({
                 <li>
                   <button
                     className="sidebar-link sidebar-button"
-                    onClick={() => console.log("High-Net-Worth Investors")}
+                    onClick={() => handleHighNetWorthInvestorsClick()}
                   >
                     High-Net-Worth Investors
                   </button>

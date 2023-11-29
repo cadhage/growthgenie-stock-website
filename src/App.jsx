@@ -262,6 +262,36 @@ function App() {
               </div>
             </div>
           )}
+          {/* {selectedItem === "High-Net-Worth Investors" && (
+            <div>
+              <h2>High-Net-Worth Investor Information</h2>
+              <table className="investor-table">
+                <thead>
+                  <tr>
+                    <th>Customer ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Wealth</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {highNetWorthInvestorData.map((investor, index) => (
+                    <tr key={index}>
+                      <td>{investor.CustomerID}</td>
+                      <td>{investor.FirstName}</td>
+                      <td>{investor.LastName}</td>
+                      <td>{investor.email}</td>
+                      <td>{investor.phone}</td>
+                      <td>{investor.Wealth}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )} */}
+
           {selectedItem === "" && (
             <div>
               <h2>Company Information</h2>

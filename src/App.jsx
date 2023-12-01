@@ -1,5 +1,16 @@
 // App.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import React, { PureComponent } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
@@ -10,7 +21,6 @@ import "./assets/styles.css";
 import MainContent from "./components/MainContent";
 import Register from "./components/Register";
 import ClientScreen from "./components/ClientScreen";
-
 function App() {
   const [selectedItem, setSelectedItem] = useState("");
   const [fdData, setFdData] = useState([]);
@@ -21,6 +31,27 @@ function App() {
   const [historicalReturnsData, setHistoricalReturnsData] = useState([]);
   const [taxAssessmentData, setTaxAssessmentData] = useState([]);
   const [password, setPassword] = useState("");
+  // useEffect(() => {
+  //   handleTaxAssessmentClick();
+  // }, []); // Trigger API call on initial render
+  // const [taxAssessmentData, setTaxAssessmentData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/api/topwealthiestcustomers"
+        );
+
+        setTaxAssessmentData(response.data);
+      } catch (error) {
+        console.error("Error fetching Tax Assessment data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(taxAssessmentData);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -123,6 +154,7 @@ function App() {
         console.error("Error fetching Tax Assessment data:", error);
       });
   };
+
   return (
     <div className="app">
       <Header
@@ -329,6 +361,35 @@ function App() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+              <div className="App">
+                <BarChart
+                  width={500}
+                  height={300}
+                  data={taxAssessmentData}
+                  margin={{
+                    top: 5,
+                    right: 0,
+                    left: 50,
+                    bottom: 5,
+                  }}
+                  barSize={20}
+                >
+                  <XAxis
+                    dataKey="FirstName"
+                    scale="point"
+                    padding={{ left: 10, right: 10 }}
+                  />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <Bar
+                    dataKey="TaxLiability"
+                    fill="#8884d8"
+                    background={{ fill: "#eee" }}
+                  />
+                </BarChart>
               </div>
             </div>
           )}

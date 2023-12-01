@@ -6,6 +6,7 @@ const SidebarLeft = ({
   handleTopStokesClick,
   userType,
   handleHighNetWorthInvestorsClick,
+  handleHistoricalReturnsClick,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -51,7 +52,7 @@ const SidebarLeft = ({
                 <li>
                   <button
                     className="sidebar-link sidebar-button"
-                    onClick={() => console.log("Historical Returns")}
+                    onClick={() => handleHistoricalReturnsClick()}
                   >
                     Historical Returns
                   </button>

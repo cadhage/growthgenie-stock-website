@@ -18,6 +18,8 @@ function App() {
   const [mfData, setMfData] = useState([]);
   const [stoeksData, setStokesData] = useState([]);
   const [highNetWorthInvestorData, setHighNetWorthInvestorsData] = useState([]);
+  const [historicalReturnsData, setHistoricalReturnsData] = useState([]);
+  const [taxAssessmentData, setTaxAssessmentData] = useState([]);
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({
     firstName: "",
@@ -83,9 +85,10 @@ function App() {
   };
   const handleHighNetWorthInvestorsClick = () => {
     setSelectedItem("High-Net-Worth Investors");
+    // .get("http://localhost:8081/api/data/get/customer/details/one")
     console.log("handleHighNetWorthInvestorsClick");
     axios
-      .get("http://localhost:8080/api/wealthiestcustomer")
+      .get("http://localhost:8081/api/data/get/customer/details/one")
       .then((response) => {
         setHighNetWorthInvestorsData(response.data);
         console.log(response.data); // Process the fetched data
@@ -98,7 +101,7 @@ function App() {
   const handleHistoricalReturnsClick = () => {
     setSelectedItem("Historical Returns");
     axios
-      .get("http://localhost:8080/api/historicalreturns")
+      .get("http://localhost:8081/api/data/get/customer/details/one")
       .then((response) => {
         setHistoricalReturnsData(response.data);
         console.log(response.data); // Process the fetched data
@@ -134,6 +137,7 @@ function App() {
           handleTopStokesClick={handleTopStokesClick}
           userType={userType}
           handleHighNetWorthInvestorsClick={handleHighNetWorthInvestorsClick}
+          handleHistoricalReturnsClick={handleHistoricalReturnsClick}
         />
         <main className="main-content">
           {/* Main content goes here */}
@@ -237,61 +241,65 @@ function App() {
           {selectedItem === "High-Net-Worth Investors" && (
             <div>
               <h2>High-Net-Worth Investor Information</h2>
-              <div className="investor-info">
-                <p>
-                  <strong>Customer ID:</strong>{" "}
-                  {highNetWorthInvestorData.CustomerID}
-                </p>
-                <p>
-                  <strong>First Name:</strong>{" "}
-                  {highNetWorthInvestorData.FirstName}
-                </p>
-                <p>
-                  <strong>Last Name:</strong>{" "}
-                  {highNetWorthInvestorData.LastName}
-                </p>
-                <p>
-                  <strong>Email:</strong> {highNetWorthInvestorData.email}
-                </p>
-                <p>
-                  <strong>Phone:</strong> {highNetWorthInvestorData.phone}
-                </p>
-                <p>
-                  <strong>Wealth:</strong> {highNetWorthInvestorData.Wealth}
-                </p>
+              <div className="table-responsive">
+                <table className="investor-table table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Customer ID</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Phone</th>
+                      <th scope="col">Wealth</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {highNetWorthInvestorData.map((investor, index) => (
+                      <tr key={index}>
+                        <td>{investor.CustomerID}</td>
+                        <td>{investor.FirstName}</td>
+                        <td>{investor.LastName}</td>
+                        <td>{investor.email}</td>
+                        <td>{investor.phone}</td>
+                        <td>{investor.Wealth}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}{" "}
+          {selectedItem === "Historical Returns" && (
+            <div>
+              <h2>High-Net-Worth Investor Information</h2>
+              <div className="table-responsive">
+                <table className="investor-table table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Customer ID</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">Amount</th>
+                      <th scope="col">Transaction Date</th>
+                      <th scope="col">Transaction Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {highNetWorthInvestorData.map((investor, index) => (
+                      <tr key={index}>
+                        <td>{investor.CustomerID}</td>
+                        <td>{investor.FirstName}</td>
+                        <td>{investor.LastName}</td>
+                        <td>{investor.Amount}</td>
+                        <td>{investor.TransactionDate}</td>
+                        <td>{investor.TransactionType}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
-          {/* {selectedItem === "High-Net-Worth Investors" && (
-            <div>
-              <h2>High-Net-Worth Investor Information</h2>
-              <table className="investor-table">
-                <thead>
-                  <tr>
-                    <th>Customer ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Wealth</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {highNetWorthInvestorData.map((investor, index) => (
-                    <tr key={index}>
-                      <td>{investor.CustomerID}</td>
-                      <td>{investor.FirstName}</td>
-                      <td>{investor.LastName}</td>
-                      <td>{investor.email}</td>
-                      <td>{investor.phone}</td>
-                      <td>{investor.Wealth}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )} */}
-
           {selectedItem === "" && (
             <div>
               <h2>Company Information</h2>

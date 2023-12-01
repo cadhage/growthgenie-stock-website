@@ -7,6 +7,7 @@ const SidebarLeft = ({
   userType,
   handleHighNetWorthInvestorsClick,
   handleHistoricalReturnsClick,
+  handleTaxAssessmentClick,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -60,7 +61,7 @@ const SidebarLeft = ({
                 <li>
                   <button
                     className="sidebar-link sidebar-button"
-                    onClick={() => console.log("Tax Assessment")}
+                    onClick={() => handleTaxAssessmentClick()}
                   >
                     Tax Assessment
                   </button>

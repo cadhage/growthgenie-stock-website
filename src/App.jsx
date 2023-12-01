@@ -88,7 +88,7 @@ function App() {
     // .get("http://localhost:8081/api/data/get/customer/details/one")
     console.log("handleHighNetWorthInvestorsClick");
     axios
-      .get("http://localhost:8081/api/data/get/customer/details/one")
+      .get("http://localhost:8080/api/topwealthiestcustomers")
       .then((response) => {
         setHighNetWorthInvestorsData(response.data);
         console.log(response.data); // Process the fetched data
@@ -101,7 +101,7 @@ function App() {
   const handleHistoricalReturnsClick = () => {
     setSelectedItem("Historical Returns");
     axios
-      .get("http://localhost:8081/api/data/get/customer/details/one")
+      .get("http://localhost:8081/api/data/get/customer/details/5")
       .then((response) => {
         setHistoricalReturnsData(response.data);
         console.log(response.data); // Process the fetched data
@@ -114,7 +114,7 @@ function App() {
   const handleTaxAssessmentClick = () => {
     setSelectedItem("Tax Assessment");
     axios
-      .get("http://localhost:8080/api/taxassessment")
+      .get("http://localhost:8080/api/topwealthiestcustomers")
       .then((response) => {
         setTaxAssessmentData(response.data);
         console.log(response.data); // Process the fetched data
@@ -138,6 +138,7 @@ function App() {
           userType={userType}
           handleHighNetWorthInvestorsClick={handleHighNetWorthInvestorsClick}
           handleHistoricalReturnsClick={handleHistoricalReturnsClick}
+          handleTaxAssessmentClick={handleTaxAssessmentClick}
         />
         <main className="main-content">
           {/* Main content goes here */}
@@ -248,9 +249,11 @@ function App() {
                       <th scope="col">Customer ID</th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Phone</th>
-                      <th scope="col">Wealth</th>
+                      <th scope="col">Total Account Balance</th>
+                      <th scope="col">Total Stock Value</th>
+                      <th scope="col">Total Mutual Fund Value</th>
+                      <th scope="col">Total Fixed Deposit Value</th>
+                      <th scope="col">Total Assets</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -259,16 +262,18 @@ function App() {
                         <td>{investor.CustomerID}</td>
                         <td>{investor.FirstName}</td>
                         <td>{investor.LastName}</td>
-                        <td>{investor.email}</td>
-                        <td>{investor.phone}</td>
-                        <td>{investor.Wealth}</td>
+                        <td>{investor.TotalAccountBalance}</td>
+                        <td>{investor.TotalStockValue}</td>
+                        <td>{investor.TotalMutualFundValue}</td>
+                        <td>{investor.TotalFixedDepositValue}</td>
+                        <td>{investor.TotalAssets}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             </div>
-          )}{" "}
+          )}
           {selectedItem === "Historical Returns" && (
             <div>
               <h2>High-Net-Worth Investor Information</h2>
@@ -285,7 +290,7 @@ function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    {highNetWorthInvestorData.map((investor, index) => (
+                    {historicalReturnsData.map((investor, index) => (
                       <tr key={index}>
                         <td>{investor.CustomerID}</td>
                         <td>{investor.FirstName}</td>
@@ -293,6 +298,33 @@ function App() {
                         <td>{investor.Amount}</td>
                         <td>{investor.TransactionDate}</td>
                         <td>{investor.TransactionType}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+          {selectedItem === "Tax Assessment" && (
+            <div>
+              <h2>High-Net-Worth Investor Information</h2>
+              <div className="table-responsive">
+                <table className="investor-table table table-striped table-bordered">
+                  <thead className="thead-dark">
+                    <tr>
+                      <th scope="col">Customer ID</th>
+                      <th scope="col">First Name</th>
+                      <th scope="col">Last Name</th>
+                      <th scope="col">TaxLiability</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {taxAssessmentData.map((investor, index) => (
+                      <tr key={index}>
+                        <td>{investor.CustomerID}</td>
+                        <td>{investor.FirstName}</td>
+                        <td>{investor.LastName}</td>
+                        <td>{investor.TaxLiability}</td>
                       </tr>
                     ))}
                   </tbody>

@@ -33,26 +33,6 @@ function App() {
   const [historicalReturnsData, setHistoricalReturnsData] = useState([]);
   const [taxAssessmentData, setTaxAssessmentData] = useState([]);
   const [password, setPassword] = useState("");
-  // useEffect(() => {
-  //   handleTaxAssessmentClick();
-  // }, []); // Trigger API call on initial render
-  // const [taxAssessmentData, setTaxAssessmentData] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:8080/api/topwealthiestcustomers"
-  //       );
-
-  //       setTaxAssessmentData(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching Tax Assessment data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
   console.log(taxAssessmentData);
   const [userData, setUserData] = useState({
     firstName: "",

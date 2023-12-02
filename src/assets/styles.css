@@ -148,12 +148,12 @@ label {
   display: none;
 }
 /* CSS */
-.footer {
+/* .footer {
   background-color: #333;
   color: white;
   padding: 20px;
   text-align: center;
-}
+} */
 
 .footer-content {
   display: flex;

@@ -1,5 +1,10 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"; // Assuming you're using Font Awesome for icons
+import {
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  FaSnapchat,
+} from "react-icons/fa"; // Assuming you're using Font Awesome for icons
 
 const Footer = () => {
   return (
@@ -9,21 +14,21 @@ const Footer = () => {
         <div className="social-media">
           {/* Social media icons with links */}
           <a
-            href="https://facebook.com/example"
+            href="https://www.linkedin.com/in/cadhage/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FaFacebook />
+            <FaLinkedinIn />
           </a>
           <a
-            href="https://twitter.com/example"
+            href="https://twitter.com/cadhage"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaTwitter />
           </a>
           <a
-            href="https://instagram.com/example"
+            href="https://instagram.com/cadhage44"
             target="_blank"
             rel="noopener noreferrer"
           >

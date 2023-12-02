@@ -32,6 +32,7 @@ function App() {
   const [highNetWorthInvestorData, setHighNetWorthInvestorsData] = useState([]);
   const [historicalReturnsData, setHistoricalReturnsData] = useState([]);
   const [taxAssessmentData, setTaxAssessmentData] = useState([]);
+  const [historicalData, sethistoricalData] = useState([]);
   const [password, setPassword] = useState("");
   console.log(taxAssessmentData);
   const [userData, setUserData] = useState({
@@ -104,6 +105,7 @@ function App() {
       .get("http://localhost:8080/api/topwealthiestcustomers")
       .then((response) => {
         setHighNetWorthInvestorsData(response.data);
+        sethistoricalData(response.data);
         console.log(response.data); // Process the fetched data
       })
       .catch((error) => {
@@ -270,34 +272,56 @@ function App() {
               </h3>
               <br />
               <div className="table-responsive">
-                <table className="investor-table table table-striped table-bordered">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th scope="col">Customer ID</th>
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">Total Account Balance</th>
-                      <th scope="col">Total Stock Value</th>
-                      <th scope="col">Total Mutual Fund Value</th>
-                      <th scope="col">Total Fixed Deposit Value</th>
-                      <th scope="col">Total Assets</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+                <div>
+                  <h5>
+                    <b>Total Assets</b>
+                  </h5>
+                  <h5>
                     {highNetWorthInvestorData.map((investor, index) => (
-                      <tr key={index}>
-                        <td>{investor.CustomerID}</td>
-                        <td>{investor.FirstName}</td>
-                        <td>{investor.LastName}</td>
-                        <td>{investor.TotalAccountBalance}</td>
-                        <td>{investor.TotalStockValue}</td>
-                        <td>{investor.TotalMutualFundValue}</td>
-                        <td>{investor.TotalFixedDepositValue}</td>
-                        <td>{investor.TotalAssets}</td>
-                      </tr>
+                      <span key={index}>
+                        {"   "}
+                        {Math.floor(investor.TotalAssets / 100000)} {"  L  "}
+                      </span>
                     ))}
-                  </tbody>
-                </table>
+                  </h5>
+                </div>
+              </div>
+              <div className="App">
+                {/* <ResponsiveContainer width="100%" height="100%"> */}
+                <BarChart
+                  width={570}
+                  height={500}
+                  data={historicalData}
+                  margin={{
+                    top: 20,
+                    right: -10,
+                    left: 37,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="FirstName" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar
+                    dataKey="TotalAccountBalance"
+                    stackId="a"
+                    fill="#8884d8"
+                  />
+                  <Bar
+                    dataKey="TotalMutualFundValue"
+                    stackId="a"
+                    fill="#82ca9d"
+                  />
+                  <Bar dataKey="TotalStockValue" stackId="a" fill="#82ca00" />
+                  <Bar
+                    dataKey="TotalFixedDepositValue"
+                    stackId="a"
+                    fill="#82c230"
+                  />
+                </BarChart>
+                {/* </ResponsiveContainer> */}
               </div>
             </div>
           )}
@@ -352,7 +376,7 @@ function App() {
                     left: 70,
                     bottom: 0,
                   }}
-                  barSize={20}
+                  barSize={33}
                 >
                   <XAxis
                     dataKey="FirstName"

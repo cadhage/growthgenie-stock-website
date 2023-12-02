@@ -21,6 +21,8 @@ import "./assets/styles.css";
 import MainContent from "./components/MainContent";
 import Register from "./components/Register";
 import ClientScreen from "./components/ClientScreen";
+import LogoImage from "./assets/clair-logo-white.svg";
+
 function App() {
   const [selectedItem, setSelectedItem] = useState("");
   const [fdData, setFdData] = useState([]);
@@ -36,21 +38,21 @@ function App() {
   // }, []); // Trigger API call on initial render
   // const [taxAssessmentData, setTaxAssessmentData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8080/api/topwealthiestcustomers"
-        );
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:8080/api/topwealthiestcustomers"
+  //       );
 
-        setTaxAssessmentData(response.data);
-      } catch (error) {
-        console.error("Error fetching Tax Assessment data:", error);
-      }
-    };
+  //       setTaxAssessmentData(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching Tax Assessment data:", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
   console.log(taxAssessmentData);
   const [userData, setUserData] = useState({
     firstName: "",
@@ -132,9 +134,10 @@ function App() {
   const handleHistoricalReturnsClick = () => {
     setSelectedItem("Historical Returns");
     axios
-      .get("http://localhost:8081/api/data/get/customer/details/5")
+      .get("http://localhost:8081/api/data/get/customer/details/1")
       .then((response) => {
         setHistoricalReturnsData(response.data);
+        setTaxAssessmentData(response.data);
         console.log(response.data); // Process the fetched data
       })
       .catch((error) => {
@@ -186,9 +189,12 @@ function App() {
           {/* <YourComponent /> */}
           {selectedItem === "Mutual Funds" && (
             <div>
-              <h2>Top Performing Mutual Funds</h2>
+              <h3>
+                <b>Top Performing Mutual Funds</b>
+              </h3>
+              <br />
               <div className="table-responsive">
-                <table className="table table-striped table-bordered">
+                <table className="investor-table table table-striped table-bordered">
                   <thead className="thead-dark">
                     <tr>
                       <th scope="col">Fund Name</th>
@@ -215,9 +221,12 @@ function App() {
           )}
           {selectedItem === "Stocks" && (
             <div>
-              <h2>Top Performing Stocks</h2>
+              <h3>
+                <b>Top Performing Stocks</b>
+              </h3>
+              <br />
               <div className="table-responsive">
-                <table className="table table-striped table-bordered">
+                <table className="investor-table table table-striped table-bordered">
                   <thead className="thead-dark">
                     <tr>
                       <th scope="col">Stoke Id</th>
@@ -244,9 +253,12 @@ function App() {
           )}
           {selectedItem === "Fixed Deposits" && (
             <div>
-              <h2>Top Performing Fixed Deposits</h2>
+              <h3>
+                <b>Top Performing Fixed Deposits</b>
+              </h3>
+              <br />
               <div className="table-responsive">
-                <table className="table table-striped table-bordered">
+                <table className="investor-table table table-striped table-bordered">
                   <thead className="thead-dark">
                     <tr>
                       <th scope="col">FD Id</th>
@@ -273,7 +285,10 @@ function App() {
           )}
           {selectedItem === "High-Net-Worth Investors" && (
             <div>
-              <h2>High-Net-Worth Investor Information</h2>
+              <h3>
+                <b>High-Net-Worth Investor Information</b>
+              </h3>
+              <br />
               <div className="table-responsive">
                 <table className="investor-table table table-striped table-bordered">
                   <thead className="thead-dark">
@@ -308,7 +323,10 @@ function App() {
           )}
           {selectedItem === "Historical Returns" && (
             <div>
-              <h2>High-Net-Worth Investor Information</h2>
+              <h3>
+                <b>Historical returns high-net-worth investors</b>
+              </h3>
+              <br />
               <div className="table-responsive">
                 <table className="investor-table table table-striped table-bordered">
                   <thead className="thead-dark">
@@ -339,39 +357,20 @@ function App() {
           )}
           {selectedItem === "Tax Assessment" && (
             <div>
-              <h2>High-Net-Worth Investor Information</h2>
-              <div className="table-responsive">
-                <table className="investor-table table table-striped table-bordered">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th scope="col">Customer ID</th>
-                      <th scope="col">First Name</th>
-                      <th scope="col">Last Name</th>
-                      <th scope="col">TaxLiability</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {taxAssessmentData.map((investor, index) => (
-                      <tr key={index}>
-                        <td>{investor.CustomerID}</td>
-                        <td>{investor.FirstName}</td>
-                        <td>{investor.LastName}</td>
-                        <td>{investor.TaxLiability}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <h3>
+                <b>Tax Assessment high-net-worth investors</b>
+              </h3>
+              <br />
               <div className="App">
                 <BarChart
                   width={500}
                   height={300}
                   data={taxAssessmentData}
                   margin={{
-                    top: 5,
+                    top: 50,
                     right: 0,
-                    left: 50,
-                    bottom: 5,
+                    left: 70,
+                    bottom: 0,
                   }}
                   barSize={20}
                 >
@@ -394,51 +393,36 @@ function App() {
             </div>
           )}
           {selectedItem === "" && (
-            <div>
-              <h2>Company Information</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
-                nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-                Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent
-                taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Curabitur sodales ligula in libero. Sed
-                dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh.
-                Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed
-                convallis tristique sem. Proin ut ligula vel nunc egestas
-                porttitor. Morbi lectus risus, iaculis vel, suscipit quis,
-                luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet.
-                Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed,
-                euismod in, nibh. Quisque volutpat condimentum velit. Class
-                aptent taciti sociosqu ad litora torquent per conubia nostra,
-                per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non
-                tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum
-                ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse
-                potenti. Nunc feugiat mi a tellus consequat imperdiet.
-                Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in
-                justo eu magna luctus suscipit. Sed lectus. Integer euismod
-                lacus luctus magna. Quisque cursus, metus vitae pharetra auctor,
-                sem massa mattis sem, at interdum magna augue eget diam.
-                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-                posuere cubilia Curae; Morbi lacinia molestie dui. Praesent
-                blandit dolor. Sed non quam. In vel mi sit amet augue congue
-                elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec
-                lacus nunc, viverra nec, blandit vel, egestas et, augue.
-                Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices
-                enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar
-                ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa.
-                Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi
-                mi. Quisque nisl felis, venenatis tristique, dignissim in,
-                ultrices sit amet, augue. Proin sodales libero eget ante. Nulla
-                quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac,
-                facilisis ac, ultricies eu, pede. Ut orci risus, accumsan
-                porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit
-                orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit,
-                fermentum non, convallis id, sagittis at, neque. Nullam mauris
-                orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut
-                felis in purus aliquam imperdiet.
-              </p>
+            <div className="container">
+              <h2>
+                <b>About Company</b>
+              </h2>
+              <br />
+              <h3>
+                <i>
+                  Intelligence is Accelerating <br />
+                  Human Transformation
+                </i>
+              </h3>
+              <br />
+              <div>
+                <p>
+                  <i>
+                    Through the sands of time, humans have always looked for
+                    newer ways of advancing their quality of life. Right through
+                    the evolution of agriculture through the industrial and
+                    internet revolution, we have always changed the center of
+                    gravity, steadily and rapidly, to advance humanity. We are
+                    living in times of constant change, and looking at a future
+                    where the power of technology is harnessed by human
+                    innovation. Following the Great Reset of 2020, the center of
+                    gravity for data is rapidly shifting from on-prem to the
+                    cloud. As enterprises make this shift, we at Clairvoyant
+                    look at continually unlocking the power of data and
+                    analytics, and deriving deeper insights to advance humanity.
+                  </i>
+                </p>
+              </div>
             </div>
           )}
         </main>

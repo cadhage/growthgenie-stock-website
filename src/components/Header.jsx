@@ -1,4 +1,4 @@
-import LogoImage from "../assets/react.svg";
+import LogoImage from "../assets/clair-logo-white.svg";
 
 const Header = ({ handleClientLogin, handleAdminLogin, userType }) => {
   console.log(userType);

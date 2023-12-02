@@ -5,15 +5,16 @@ const SidebarRight = () => {
     <aside className="sidebar-right">
       {/* Contact and About */}
       <div className="news-container">
-        <h2>Contact Us</h2>
-        <p>Phone: 123-456-7890</p>
-        <p>Email: info@investment.com</p>
-      </div>
-      <div className="about">
-        <h2>About</h2>
+        <h2>
+          <b>
+            <i>Contact Us</i>
+          </b>
+        </h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <i>Phone: (623)-282-2385</i>
+        </p>
+        <p>
+          <i>Email: hello@clairvoyantsoft.com</i>
         </p>
       </div>
     </aside>

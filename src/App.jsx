@@ -76,7 +76,7 @@ function App() {
   const handleFixedDepositeClick = () => {
     setSelectedItem("Fixed Deposits");
     axios
-      .get("http://localhost:8080/api/topfixeddeposits")
+      .get("http://localhost:8080/get/api/top/FDs")
       .then((response) => {
         setFdData(response.data);
         console.log(response.data); // Process the fetched data
@@ -88,7 +88,7 @@ function App() {
   const handleTopStokesClick = () => {
     setSelectedItem("Stocks");
     axios
-      .get("http://localhost:8080/api/topstocks")
+      .get("http://localhost:8080/get/api/top/stocks")
       .then((response) => {
         setStokesData(response.data);
         console.log(response.data); // Process the fetched data
@@ -116,7 +116,7 @@ function App() {
   const handleHistoricalReturnsClick = () => {
     setSelectedItem("Historical Returns");
     axios
-      .get("http://localhost:8081/api/data/get/customer/details/1")
+      .get("http://localhost:8080/api/data/get/customer/transactions")
       .then((response) => {
         setHistoricalReturnsData(response.data);
         setTaxAssessmentData(response.data);
@@ -219,17 +219,21 @@ function App() {
                       <th scope="col">Stoke Name</th>
                       <th scope="col">Stoke Enchange</th>
                       <th scope="col">Purchase Price</th>
+                      <th scope="col">Current Price</th>
+                      <th scope="col">Price Change In %</th>
                       <th scope="col">Quantity</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {stoeksData.map((item, STOCKID) => (
-                      <tr key={STOCKID}>
-                        <td>{item.STOCKID}</td>
-                        <td>{item.STOCKNAME}</td>
-                        <td>{item.STOCKEXCHANGE}</td>
-                        <td>{item.PURCHASEPRICE}</td>
-                        <td>{item.QUANTITY}</td>
+                    {stoeksData.map((item, StockID) => (
+                      <tr key={StockID}>
+                        <td>{item.StockID}</td>
+                        <td>{item.StockName}</td>
+                        <td>{item.StockExchange}</td>
+                        <td>{item.PurchasePrice}</td>
+                        <td>{item.CurrentPrice}</td>
+                        <td>{item.PriceChangePercentage}</td>
+                        <td>{item.Quantity}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -248,20 +252,24 @@ function App() {
                   <thead className="thead-dark">
                     <tr>
                       <th scope="col">FD Id</th>
-                      <th scope="col">Investment Acc. Id</th>
-                      <th scope="col">Principal Amount</th>
-                      <th scope="col">Interest Rate</th>
                       <th scope="col">Maturity Amount</th>
+                      <th scope="col">% Growth</th>
+                      <th scope="col">Maturity Date</th>
+                      <th scope="col">InterestRate</th>
+                      <th scope="col">Interest Payment Frequency</th>
+                      <th scope="col">Principal Amount</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {fdData.map((item, FIXEDDEPOSITID) => (
-                      <tr key={FIXEDDEPOSITID}>
-                        <td>{item.FIXEDDEPOSITID}</td>
-                        <td>{item.INVESTMENTACCOUNTID}</td>
-                        <td>{item.PRINCIPALAMOUNT}</td>
-                        <td>{item.INTERESTRATE}</td>
-                        <td>{item.MATURITYAMOUNT}</td>
+                    {fdData.map((item, FixedDepositID) => (
+                      <tr key={FixedDepositID}>
+                        <td>{item.FixedDepositID}</td>
+                        <td>{item.MaturityAmount}</td>
+                        <td>{item.PercentageGrowth}</td>
+                        <td>{item.MaturityDate}</td>
+                        <td>{item.InterestRate}</td>
+                        <td>{item.InterestPaymentFrequency}</td>
+                        <td>{item.PrincipalAmount}</td>
                       </tr>
                     ))}
                   </tbody>

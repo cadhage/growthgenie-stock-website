@@ -5,6 +5,10 @@ const ClientScreen = ({
   handleMutualFundClick,
   handleFixedDepositeClick,
   handleTopStokesClick,
+  userType,
+  handleHighNetWorthInvestorsClick,
+  handleHistoricalReturnsClick,
+  handleTaxAssessmentClick,
 }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
@@ -38,18 +42,49 @@ const ClientScreen = ({
       )}
       {showButtons && (
         <div className={`horizontal-menu${isMobile ? " mobile-view" : ""}`}>
-          <button className="menu-item" onClick={() => handleTopStokesClick()}>
-            Stokes
-          </button>
-          <button className="menu-item" onClick={() => handleMutualFundClick()}>
-            Mutual Funds
-          </button>
-          <button
-            className="menu-item"
-            onClick={() => handleFixedDepositeClick()}
-          >
-            Fixed Deposit
-          </button>
+          {userType !== "admin" ? (
+            <>
+              <button
+                className="menu-item"
+                onClick={() => handleTopStokesClick()}
+              >
+                Stokes
+              </button>
+              <button
+                className="menu-item"
+                onClick={() => handleMutualFundClick()}
+              >
+                Mutual Funds
+              </button>
+              <button
+                className="menu-item"
+                onClick={() => handleFixedDepositeClick()}
+              >
+                Fixed Deposit
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                className="menu-item"
+                onClick={() => handleHighNetWorthInvestorsClick()}
+              >
+                High-Net-Worth Investors
+              </button>
+              <button
+                className="menu-item"
+                onClick={() => handleHistoricalReturnsClick()}
+              >
+                Historical Returns
+              </button>
+              <button
+                className="menu-item"
+                onClick={() => handleTaxAssessmentClick()}
+              >
+                Tax Assessment
+              </button>
+            </>
+          )}
         </div>
       )}
       {/* <button onClick={fetchTopPerformingFD}>Fetch Top FD Data</button> */}

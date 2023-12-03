@@ -165,6 +165,10 @@ function App() {
             handleMutualFundClick={handleMutualFundClick}
             handleFixedDepositeClick={handleFixedDepositeClick}
             handleTopStokesClick={handleTopStokesClick}
+            userType={userType}
+            handleHighNetWorthInvestorsClick={handleHighNetWorthInvestorsClick}
+            handleHistoricalReturnsClick={handleHistoricalReturnsClick}
+            handleTaxAssessmentClick={handleTaxAssessmentClick}
           />
           {/* <LeftSidebar  /> */}
           {/* <TopPerformingFDs /> */}

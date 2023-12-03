@@ -172,7 +172,7 @@ label {
 }
 
 .social-media a:hover {
-  color: yellow; /* Change color on hover */
+  color: #fc3a52; /* Change color on hover */
 }
 /* CSS */
 /* CSS */
@@ -203,4 +203,12 @@ tr:nth-child(even) {
 .table-responsive {
   overflow-x: auto;
   max-width: 100%;
+}
+.menu-item {
+  color: #0e2431;
+  background-color: #e8d5b7;
+}
+.menu-item:hover {
+  color: #fc3a52;
+  background-color: #f9b248;
 }

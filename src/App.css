@@ -198,7 +198,8 @@
 .admin-login,
 .customer-login {
   background-color: #fc3a52;
-  color: #fff;
+  text-decoration: solid;
+  color: #e8d5b7;
   border: none;
   padding: 8px 16px;
   border-radius: 5px;
@@ -209,7 +210,9 @@
 
 .admin-login:hover,
 .customer-login:hover {
-  background-color: #777;
+  background-color: #f9b248;
+  color: #0e2431;
+  text-decoration: solid;
 }
 
 @media only screen and (max-width: 768px) {
@@ -280,7 +283,7 @@
 .header-link:hover {
   background-color: #f9b248; /* Lighter background color on hover */
   color: #0e2431; /* Darker text color on hover */
-  text-decoration: #fc3a52;
+  text-decoration: #fc3a52 solid;
 }
 .sidebar-wrapper {
   position: relative;
